@@ -41,21 +41,21 @@ function uploadPizza() {
                 }
             })
                 .then(response => response.json())
-                .then(serveResponse => {
+                .then(serverResponse => {
                     if (serverResponse.message) {
-                        throw new Error(serveResponse);
+                        throw new Error(serverResponse);
                     }
                     const transaction = db.transaction(['new_pizza'], 'readwrite');
                     const pizzaObjectStore = transaction.objectStore('new_pizza');
                     pizzaObjectStore.clear();
 
-                    alert('All saved pizza has been submitted');
+                    alert('All saved pizza has been submitted!');
                 })
                 .catch(err => {
                     console.log(err);
                 });
         }
     }
-}
+};
 
 window.addEventListener('online', uploadPizza);
